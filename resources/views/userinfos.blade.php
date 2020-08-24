@@ -9,6 +9,7 @@
 {{-- scripts from cdn and places --}}
 <div id="test">
     <button type="button" id="addbtn" data-toggle="modal" data-target="#AddmyModal">Add</button>
+    <input type="text" id="myInputTextField" placeholder="Search">
     <table id="users-table" class="table">
         <thead>
             {{-- simple table, filled in the js --}}

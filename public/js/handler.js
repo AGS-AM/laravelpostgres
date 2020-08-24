@@ -1,6 +1,8 @@
 jQuery(document).ready(function ($) {
+
     var table = jQuery('#users-table').DataTable({
-        // datatables 
+        // datatables lftipr
+        sDom: 'tipr',
         processing: true,
         serverSide: true,
         ajax: 'http://127.0.0.1:8000/user_infos/get_data',
@@ -22,7 +24,8 @@ jQuery(document).ready(function ($) {
         {
             data: 'salary',
             // format 
-            render: $.fn.DataTable.render.number(',', '.', 0, '$')
+            render: $.fn.DataTable.render.number(',', '.', 0, '$'),
+            searchable: false
         },
         {
             data: null,
@@ -36,6 +39,9 @@ jQuery(document).ready(function ($) {
         },
         ],
         pageLength: 10,
+    });
+    $('#myInputTextField').keyup(function () {
+        table.search($(this).val()).draw();
     });
     jQuery('#addbtn').click(function () {
         // some hide/show/reset stuff
@@ -77,7 +83,7 @@ jQuery(document).ready(function ($) {
             type: "DELETE",
             url: 'user_infos/' + link_id,
             success: function (data) {
-                console.log("delete"+data);
+                console.log("delete" + data);
                 $("#link_id" + link_id).remove();
                 table.ajax.reload(null, false);
                 jQuery('#modalFormData').trigger("reset");
