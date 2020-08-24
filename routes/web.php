@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/user_infos');
 });
 // routes 
 Route::get('/user_infos', 'userinfoscontroller@index');
