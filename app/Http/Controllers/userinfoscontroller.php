@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\UserInfo;
-use Facade\FlareClient\Http\Response;
-use Illuminate\Auth\Events\Validated;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
