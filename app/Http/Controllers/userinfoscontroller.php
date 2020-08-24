@@ -26,6 +26,7 @@ class userinfoscontroller extends Controller
         // validate fields
         $validator = Validator::make($request->all(), [
             'name' => 'alpha|max:255',
+            'surname' => 'alpha|max:255',
             'address' => 'required|max:255',
             'age' => 'required|numeric|min:1|max:100',
             'salary' => 'required|numeric|min:1|max:1000000',
@@ -37,6 +38,7 @@ class userinfoscontroller extends Controller
         // passed creates new userinfo
         $createUserInfo = new UserInfo();
         $createUserInfo->name = $request->name;
+        $createUserInfo->surname = $request->surname;
         $createUserInfo->address = $request->address;
         $createUserInfo->age = $request->age;
         $createUserInfo->salary = $request->salary;
@@ -48,6 +50,7 @@ class userinfoscontroller extends Controller
         // validation fields
         $validator = Validator::make($request->all(), [
             'name' => 'alpha|max:255',
+            'surname' => 'alpha|max:255',
             'address' => 'required|max:255',
             'age' => 'required|numeric|min:1|max:100',
             'salary' => 'required|numeric|min:1|max:1000000',
@@ -59,6 +62,7 @@ class userinfoscontroller extends Controller
         // locates using pkey and replace info
         $user_infos = UserInfo::find($link_id);
         $user_infos->name = $request->name;
+        $user_infos->surname = $request->surname;
         $user_infos->address = $request->address;
         $user_infos->age = $request->age;
         $user_infos->salary = $request->salary;

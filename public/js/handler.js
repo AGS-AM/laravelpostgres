@@ -11,6 +11,9 @@ jQuery(document).ready(function ($) {
             data: 'name'
         },
         {
+            data: 'surname'
+        },
+        {
             data: 'address'
         },
         {
@@ -50,6 +53,7 @@ jQuery(document).ready(function ($) {
         var link_id = data.id;
         console.log(link_id);
         jQuery('#eName').val(data.name);
+        jQuery('#eSurName').val(data.surname);
         jQuery('#eAdr').val(data.address);
         jQuery('#eAge').val(data.age);
         jQuery('#eSalary').val(data.salary);
@@ -95,6 +99,7 @@ jQuery(document).ready(function ($) {
         //data to be sent 
         var formData = {
             name: jQuery('#eName').val(),
+            surname: jQuery('#eSurName').val(),
             address: jQuery('#eAdr').val(),
             age: jQuery('#eAge').val(),
             salary: jQuery('#eSalary').val(),

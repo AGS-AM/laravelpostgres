@@ -15,6 +15,7 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Surname</th>
                 <th>Address</th>
                 <th>Age</th>
                 <th>Salary</th>
@@ -47,6 +48,13 @@
                         <label for="inputLink" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="eName" placeholder="Name"
+                                value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputLink" class="col-sm-2 control-label">Surname</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="eSurName" placeholder="Surname"
                                 value="">
                         </div>
                     </div>

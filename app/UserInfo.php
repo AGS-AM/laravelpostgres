@@ -14,6 +14,6 @@ class UserInfo extends Model
      */
     
     protected $fillable = [
-        'name', 'address', 'age', 'salary'
+        'name','surname', 'address', 'age', 'salary'
     ];
 }

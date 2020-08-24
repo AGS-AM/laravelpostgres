@@ -9,7 +9,8 @@ use Illuminate\Support\Str;
 $factory->define(UserInfo::class, function (Faker $faker) {
     return [
         
-        'name'=>$faker->name,
+        'name'=>$faker->firstName,
+        'surname'=>$faker->lastName,
         'address'=>$faker->address,
         // limited, not the same with validation fields 
         'age'=>$faker->numberBetween($min = 20, $max = 70),
