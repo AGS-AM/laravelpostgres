@@ -24,5 +24,9 @@
     "main": "php artisan serve ",
     "repository": "nope",
     "author": "Don",
-    "license": "MIT"
+    "license": "MIT",
+    "scripts": {
+        "build-project": "php artisan migrate --seed",
+        "run": "php artisan serve"
+    }
 }
