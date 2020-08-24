@@ -4,5 +4,6 @@ I've added yarn, soooo
 
 > php artisan migrate --seed
 
-> php artisan serve 
+> php artisan serve
+ 
 and yeah postgres db up and running
