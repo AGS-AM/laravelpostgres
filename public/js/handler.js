@@ -16,16 +16,13 @@ jQuery(document).ready(function ($) {
             data: 'surname'
         },
         {
-            data: 'address'
+            data: 'username'
         },
         {
-            data: 'age'
+            data: 'phone'
         },
         {
-            data: 'salary',
-            // format 
-            render: $.fn.DataTable.render.number(',', '.', 0, '$'),
-            searchable: false
+            data: 'email'
         },
         {
             data: null,
@@ -49,20 +46,24 @@ jQuery(document).ready(function ($) {
         jQuery('#modalFormData').trigger("reset");
         jQuery('#eSave').val("add");
         jQuery('#eDel').hide();
+        jQuery('#eSalaryMain').show();
+        jQuery('#ePassMain').show();
         jQuery('#myModal').modal('show');
         jQuery('.alert-danger').hide();
     });
-
+// edit
     jQuery('#users-table tbody').on('click', 'button', function () {
         var data = table.row(jQuery(this).parents('tr')).data();
         // gets the table info to find the row data
         var link_id = data.id;
         console.log(link_id);
+        jQuery('#modalTitle').text("Edit User");
         jQuery('#eName').val(data.name);
         jQuery('#eSurName').val(data.surname);
-        jQuery('#eAdr').val(data.address);
-        jQuery('#eAge').val(data.age);
-        jQuery('#eSalary').val(data.salary);
+        jQuery('#eAdr').val(data.username);
+        jQuery('#eAge').val(data.phone);
+        jQuery('#eSalaryMain').hide();
+        jQuery('#ePassMain').hide();
         jQuery('#eSave').val("edit");
         jQuery('#eDel').show();
         jQuery('#link_id').val(link_id);
@@ -106,9 +107,10 @@ jQuery(document).ready(function ($) {
         var formData = {
             name: jQuery('#eName').val(),
             surname: jQuery('#eSurName').val(),
-            address: jQuery('#eAdr').val(),
-            age: jQuery('#eAge').val(),
-            salary: jQuery('#eSalary').val(),
+            username: jQuery('#eAdr').val(),
+            phone: jQuery('#eAge').val(),
+            email: jQuery('#eSalary').val(),
+            password: jQuery('#ePass').val(),
         };
         //check for button edit or add
         var state = jQuery('#eSave').val();
@@ -120,6 +122,7 @@ jQuery(document).ready(function ($) {
             console.log("Linking b4 send" + link_id);
             ajaxurl = 'user_infos/' + link_id;
         }
+
         $.ajax({
             type: type,
             url: ajaxurl,
@@ -144,5 +147,6 @@ jQuery(document).ready(function ($) {
                 });
             }
         });
+
     });
 });

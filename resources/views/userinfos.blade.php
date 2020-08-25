@@ -8,6 +8,14 @@
 <script src="js/handler.js"></script>
 {{-- scripts from cdn and places --}}
 <div id="test">
+    <button type="button" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+        {{ __('Logout') }}
+    </button>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+
     <button type="button" id="addbtn" data-toggle="modal" data-target="#AddmyModal">Add</button>
     <input type="text" id="myInputTextField" placeholder="Search">
     <table id="users-table" class="table">
@@ -17,9 +25,9 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Surname</th>
-                <th>Address</th>
-                <th>Age</th>
-                <th>Salary</th>
+                <th>Username</th>
+                <th>Phone</th>
+                <th>Email</th>
                 <th>Edit</th>
             </tr>
         </thead>
@@ -48,33 +56,37 @@
                     <div class="form-group">
                         <label for="inputLink" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="eName" placeholder="Name"
-                                value="">
+                            <input type="text" class="form-control" id="eName" placeholder="Name" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputLink" class="col-sm-2 control-label">Surname</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="eSurName" placeholder="Surname"
-                                value="">
+                            <input type="text" class="form-control" id="eSurName" placeholder="Surname" value="">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputLink" class="col-sm-2 control-label">Address</label>
+                        <label for="inputLink" class="col-sm-2 control-label">Username</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="eAdr" placeholder="Address" value="">
+                            <input type="text" class="form-control" id="eAdr" placeholder="Username" value="">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputLink" class="col-sm-2 control-label">Age</label>
+                        <label for="inputLink" class="col-sm-2 control-label">Phone</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="eAge" placeholder="Age" value="">
+                            <input type="text" class="form-control" id="eAge" placeholder="12345678" value="">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="inputLink" class="col-sm-2 control-label">Salary</label>
+                    <div class="form-group" id="eSalaryMain">
+                        <label for="inputLink" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="eSalary" placeholder="Salary" value="">
+                            <input type="text" class="form-control" id="eSalary" placeholder="abc@cba" value="">
+                        </div>
+                    </div>
+                    <div class="form-group" id="ePassMain">
+                        <label for="inputLink" class="col-sm-2 control-label">Pass</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="ePass" placeholder="Pass" value="">
                         </div>
                     </div>
 
