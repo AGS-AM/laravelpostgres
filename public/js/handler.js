@@ -46,7 +46,7 @@ jQuery(document).ready(function ($) {
         jQuery('#modalFormData').trigger("reset");
         jQuery('#eSave').val("add");
         jQuery('#eDel').hide();
-        jQuery('#eSalaryMain').show();
+        // jQuery('#eSalaryMain').show();
         jQuery('#ePassMain').show();
         jQuery('#myModal').modal('show');
         jQuery('.alert-danger').hide();
@@ -62,7 +62,8 @@ jQuery(document).ready(function ($) {
         jQuery('#eSurName').val(data.surname);
         jQuery('#eAdr').val(data.username);
         jQuery('#eAge').val(data.phone);
-        jQuery('#eSalaryMain').hide();
+        // jQuery('#eSalaryMain').hide();
+        jQuery('#eSalary').val(data.email);
         jQuery('#ePassMain').hide();
         jQuery('#eSave').val("edit");
         jQuery('#eDel').show();

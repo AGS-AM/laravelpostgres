@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -60,7 +61,7 @@ class UserController extends Controller
             'surname' => ['required', 'string', 'max:255'],
             'username'=>['required','string','max:48'],
             'phone'=>['required','integer','max:9999999999'],
-            // 'email' => ['required', 'string', 'email', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($link_id)],
         ]);
         // failed validation
         if ($validator->fails()) {
