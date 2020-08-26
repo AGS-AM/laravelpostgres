@@ -41,7 +41,14 @@ jQuery(document).ready(function ($) {
         pageLength: 10,
     });
     $('#myInputTextField').keyup(function () {
+        $searchfrom = jQuery('#searchfrom').val();
+        if($searchfrom == "all")
+        {
         table.search($(this).val()).draw();
+        }else
+        {
+        table.columns($searchfrom).search($(this).val()).draw();
+        }
     });
     jQuery('#addbtn').click(function () {
         // some hide/show/reset stuff

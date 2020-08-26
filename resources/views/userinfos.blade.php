@@ -1,5 +1,7 @@
 <meta name="csrf-token" content="{{ csrf_token() }}" />
-{{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
+{{--
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+--}}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="https://datatables.yajrabox.com/css/datatables.bootstrap.css" rel="stylesheet">
@@ -18,6 +20,14 @@
     </form>
 
     <button type="button" id="addbtn" data-toggle="modal" data-target="#AddmyModal">Add</button>
+    <label for="searchfrom">Search From : </label>
+    <select name="searchfrom" id="searchfrom">
+        <option value="all">All</option>
+        <option value="1">Name</option>
+        <option value="2">Surname</option>
+        <option value="3">Phone</option>
+        <option value="4">Email</option>
+    </select>
     <input type="text" id="myInputTextField" placeholder="Search">
     <table id="users-table" class="table">
         <thead>
@@ -33,6 +43,19 @@
                 <th>Edit</th>
             </tr>
         </thead>
+        <tfoot>
+            {{-- simple table, filled in the js --}}
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Username</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Power</th>
+                <th>Edit</th>
+            </tr>
+        </tfoot>
     </table>
 </div>
 
