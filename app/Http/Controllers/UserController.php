@@ -28,11 +28,15 @@ class UserController extends Controller
     }
     public function personalinput(Request $request)
     {
-        if(Auth::user()->power<2)
+        if(Auth::user()->power<=$request->power)
         {
             return response()->json(['errors' => [0 =>'Not Enough Power']], 400);
         }
         // validate fields
+        if($request->password != $request->passwordConfirm)
+        {
+            return response()->json(['errors' => [0 =>'Password does not match']], 400);
+        }
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
@@ -59,7 +63,7 @@ class UserController extends Controller
     }
     public function edit(Request $request, $link_id)
     {
-        if(Auth::user()->power<1)
+        if(Auth::user()->power<=$request->power)
         {
             return response()->json(['errors' => [0 =>'Not Enough Power']], 400);
         }
@@ -83,11 +87,16 @@ class UserController extends Controller
         $user_infos->phone = $request->phone;
         // $user_infos->email = $request->email;
         $user_infos->save();
-        //$user_infos->currentuser = Auth::user();
+        $user_infos->currentuser = Auth::user()->power;
         return response()->json($user_infos, 200);
     }
     public function delete($link_id)
     {
+        $user_infos = User::find($link_id);
+        if(Auth::user()->power<=$user_infos->power)
+        {
+            return response()->json(['errors' => [0 =>'Not Enough Power']], 400);
+        }
         $delUsers = User::destroy($link_id);
         return response()->json($delUsers, 200);
     }

@@ -42,12 +42,11 @@ jQuery(document).ready(function ($) {
     });
     $('#myInputTextField').keyup(function () {
         $searchfrom = jQuery('#searchfrom').val();
-        if($searchfrom == "all")
-        {
-        table.search($(this).val()).draw();
-        }else
-        {
-        table.columns($searchfrom).search($(this).val()).draw();
+        if ($searchfrom == "all") {
+            table.search($(this).val()).draw();
+        }
+        else {
+            table.columns($searchfrom).search($(this).val()).draw();
         }
     });
     jQuery('#addbtn').click(function () {
@@ -56,28 +55,30 @@ jQuery(document).ready(function ($) {
         jQuery('#modalFormData').trigger("reset");
         jQuery('#eSave').val("add");
         jQuery('#eDel').hide();
-        // jQuery('#eSalaryMain').show();
+        // jQuery('#eEmailMain').show();
         jQuery('#ePassMain').show();
         jQuery('#myModal').modal('show');
         jQuery('.alert-danger').hide();
     });
-// edit
+    // edit
     jQuery('#users-table tbody').on('click', 'button', function () {
         var data = table.row(jQuery(this).parents('tr')).data();
         // gets the table info to find the row data
+        var hiddenpow = data.power;
         var link_id = data.id;
         console.log(link_id);
         jQuery('#modalTitle').text("Edit User");
         jQuery('#eName').val(data.name);
         jQuery('#eSurName').val(data.surname);
-        jQuery('#eAdr').val(data.username);
-        jQuery('#eAge').val(data.phone);
-        // jQuery('#eSalaryMain').hide();
-        jQuery('#eSalary').val(data.email);
+        jQuery('#eUser').val(data.username);
+        jQuery('#ePhone').val(data.phone);
+        // jQuery('#eEmailMain').hide();
+        jQuery('#eEmail').val(data.email);
         jQuery('#ePassMain').hide();
         jQuery('#eSave').val("edit");
         jQuery('#eDel').show();
         jQuery('#link_id').val(link_id);
+        jQuery('#hiddenpow').val(hiddenpow);
         //changes data to show in fields
         jQuery("#myModal").modal('show');
         jQuery('.alert-danger').hide();
@@ -103,6 +104,11 @@ jQuery(document).ready(function ($) {
             },
             error: function (data) {
                 console.log('Error:', data);
+                jQuery('.alert-danger').html('');
+                jQuery.each(data.responseJSON.errors, function (key, value) {
+                    jQuery('.alert-danger').show();
+                    jQuery('.alert-danger').append('<li>' + value + '</li>');
+                });
             }
         });
     });
@@ -118,10 +124,12 @@ jQuery(document).ready(function ($) {
         var formData = {
             name: jQuery('#eName').val(),
             surname: jQuery('#eSurName').val(),
-            username: jQuery('#eAdr').val(),
-            phone: jQuery('#eAge').val(),
-            email: jQuery('#eSalary').val(),
+            username: jQuery('#eUser').val(),
+            phone: jQuery('#ePhone').val(),
+            email: jQuery('#eEmail').val(),
+            power: jQuery('#hiddenpow').val(),
             password: jQuery('#ePass').val(),
+            passwordConfirm: jQuery('#ePassC').val(),
         };
         //check for button edit or add
         var state = jQuery('#eSave').val();

@@ -50,10 +50,12 @@ class LoginController extends Controller
 
         $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
         if (auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password']))) {
-            return redirect()->route('home');
+        //    return response()->json('welcome', 200);
+            return redirect()->route('home')->setStatusCode(202);
         } else {
+            // return response()->json('kekwfail', 400);
             return redirect()->route('login')
-                ->with('error', 'Email-Address And Password Are Wrong.');
+                ->with('error', 'Email-Address And Password Are Wrong.')->setStatusCode(401);
         }
     }
 }

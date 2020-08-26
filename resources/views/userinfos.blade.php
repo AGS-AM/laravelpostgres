@@ -93,25 +93,29 @@
                     <div class="form-group">
                         <label for="inputLink" class="col-sm-2 control-label">Username</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="eAdr" placeholder="Username" value="">
+                            <input type="text" class="form-control" id="eUser" placeholder="Username" value="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputLink" class="col-sm-2 control-label">Phone</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="eAge" placeholder="12345678" value="">
+                            <input type="text" class="form-control" id="ePhone" placeholder="12345678" value="">
                         </div>
                     </div>
-                    <div class="form-group" id="eSalaryMain">
+                    <div class="form-group" id="eEmailMain">
                         <label for="inputLink" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="eSalary" placeholder="abc@cba" value="">
+                            <input type="text" class="form-control" id="eEmail" placeholder="abc@cba" value="">
                         </div>
                     </div>
                     <div class="form-group" id="ePassMain">
-                        <label for="inputLink" class="col-sm-2 control-label">Pass</label>
+                        <label for="inputLink" class="col-sm-2 control-label">Password</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="ePass" placeholder="Pass" value="">
+                            <input type="password" class="form-control" id="ePass" placeholder="Pass" value="">
+                        </div>
+                        <label for="inputLink" class="col-sm-2 control-label">Confirm Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="ePassC" placeholder="ConfPass" value="">
                         </div>
                     </div>
 
@@ -121,6 +125,7 @@
                 <button type="button" class="btn btn-default" id="eSave" value="edit">Save</button>
                 <button type="button" class="btn btn-default" id="eDel" value="delete">Delete</button>
                 <input type="hidden" id="link_id" name="link_id" value="0">
+                <input type="hidden" id="hiddenpow" name="hiddenpow" value="0">
             </div>
         </div>
 
