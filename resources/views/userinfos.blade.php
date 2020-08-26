@@ -29,6 +29,7 @@
                 <th>Username</th>
                 <th>Phone</th>
                 <th>Email</th>
+                <th>Power</th>
                 <th>Edit</th>
             </tr>
         </thead>

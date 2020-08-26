@@ -25,6 +25,9 @@ jQuery(document).ready(function ($) {
             data: 'email'
         },
         {
+            data: 'power'
+        },
+        {
             data: null,
             render: function (data, type, row) {
                 // adds edit button on the last collumn

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -20,21 +21,23 @@ class UserController extends Controller
     {
         $user_infos = User::all();
         return view('userinfos', ['user_infos' => $user_infos]);
-        // uhh main pphone
     }
     public function get_data()
     {
         return DataTables::eloquent(User::query())->make(true);
-        // json pphone of pgsql
     }
     public function personalinput(Request $request)
     {
+        if(Auth::user()->power<2)
+        {
+            return response()->json(['errors' => [0 =>'Not Enough Power']], 400);
+        }
         // validate fields
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
-            'username'=>['required','string','max:48', 'unique:users'],
-            'phone'=>['required','integer','max:9999999999'],
+            'username' => ['required', 'string', 'max:48', 'unique:users'],
+            'phone' => ['required', 'integer', 'max:9999999999'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
         ]);
@@ -50,17 +53,22 @@ class UserController extends Controller
         $createUser->phone = $request->phone;
         $createUser->email = $request->email;
         $createUser->password = Hash::make($request->password);
+        $createUser->power = 0;
         $createUser->save();
         return response()->json($createUser, 200);
     }
     public function edit(Request $request, $link_id)
     {
+        if(Auth::user()->power<1)
+        {
+            return response()->json(['errors' => [0 =>'Not Enough Power']], 400);
+        }
         // validation fields
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
-            'username'=>['required','string','max:48'],
-            'phone'=>['required','integer','max:9999999999'],
+            'username' => ['required', 'string', 'max:48'],
+            'phone' => ['required', 'integer', 'max:9999999999'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($link_id)],
         ]);
         // failed validation
@@ -75,6 +83,7 @@ class UserController extends Controller
         $user_infos->phone = $request->phone;
         // $user_infos->email = $request->email;
         $user_infos->save();
+        //$user_infos->currentuser = Auth::user();
         return response()->json($user_infos, 200);
     }
     public function delete($link_id)

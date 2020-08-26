@@ -28,6 +28,7 @@ $factory->define(User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => Hash::make('12345678ABC'), // hashed password for generated data to work
         // 'password' => Hash::make($faker->password),
+        'power' => $faker->numberBetween($min = 0, $max = 2),
         'remember_token' => Str::random(10),
     ];
 });
