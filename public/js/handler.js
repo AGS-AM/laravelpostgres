@@ -1,4 +1,5 @@
 jQuery(document).ready(function ($) {
+    var lockedlinkid;
     var cuser = $.getJSON("http://127.0.0.1:8000/user_infos/get_cuser",
         function (data, textStatus, jqXHR) {
             console.log(cuser.responseJSON);
@@ -92,6 +93,7 @@ jQuery(document).ready(function ($) {
                 // gets the table info to find the row data
                 var hiddenpow = data.power;
                 var link_id = data.id;
+                lockedlinkid = data.id;
                 if (cuser.responseJSON.power <= hiddenpow) {
                     console.log("denied");
                     //incase ppl change thru inspect
@@ -118,6 +120,7 @@ jQuery(document).ready(function ($) {
             jQuery('#eDel2').hide();
             jQuery('#eDel').click(function () {  
                 jQuery('#eDel2').show();
+                console.log(lockedlinkid);
                 jQuery('#eDel').hide();
             });
             jQuery('#eDel2').click(function () {
@@ -130,12 +133,13 @@ jQuery(document).ready(function ($) {
                         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
                     }
                 });
+                console.log(lockedlinkid);
                 $.ajax({
                     type: "DELETE",
-                    url: 'user_infos/' + link_id,
+                    url: 'user_infos/' + lockedlinkid,
                     success: function (data) {
                         console.log(link_id);
-                        $("#link_id" + link_id).remove();
+                        $("#link_id" + lockedlinkid).remove();
                         table.ajax.reload(null, false);
                         jQuery('#modalFormData').trigger("reset");
                         jQuery('#myModal').modal('hide');
