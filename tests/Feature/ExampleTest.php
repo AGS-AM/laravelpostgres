@@ -143,10 +143,17 @@ class ExampleTest extends TestCase
         //REQUIRES LOGIN
 
         for ($i = 1; $i < 11; $i++) {
-            echo "\n Testing Mass Delete " . $i;
+            //echo "\n Testing Mass Delete " . $i;
             $this->json('DELETE', '/user_infos/' . $i, ['Accept' => 'application/json'])
                 ->assertStatus(204);
+                //power 2 can delete via json cant do it thru web
         }
+        $this->json('GET', 'user_infos/get_data')
+            ->assertJson(
+                [
+                    'recordsTotal' => 491,
+                ]
+            );
     }
     public function testPowerDatatables()
     {
