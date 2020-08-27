@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Hash;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $faker->seed(1234);
     return [
         'name' => $faker->firstName,
         'surname' => $faker->lastName,

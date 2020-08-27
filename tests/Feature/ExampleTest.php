@@ -7,6 +7,8 @@ use Tests\TestCase;
 use Illuminate\Support\Facades\Hash;
 use App\User;
 
+use SebastianBergmann\Environment\Console;
+
 class ExampleTest extends TestCase
 {
     /**
@@ -80,16 +82,7 @@ class ExampleTest extends TestCase
         $this->json('GET', 'user_infos/get_data')
             ->assertJson(
                 [
-                    'recordsTotal' => 51,
-                    'data' => [
-                        [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [], [
-                            'name' => 'testingphase',
-                            'surname' => 'testingphase',
-                            'username' => 'testingphase',
-                            'phone' => 12345678,
-                            'email' => 'testingphase@testingphase.com',
-                        ]
-                    ]
+                    'recordsTotal' => 1001,
                 ]
             );
         //Looking to see if the seeded 50 and recently added 1 makes 51
