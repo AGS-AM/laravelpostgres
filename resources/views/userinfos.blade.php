@@ -1,12 +1,13 @@
 <meta name="csrf-token" content="{{ csrf_token() }}" />
-{{--
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
---}}
+
+{{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> --}}
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="https://datatables.yajrabox.com/css/datatables.bootstrap.css" rel="stylesheet">
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
 <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 <script src="js/handler.js"></script>
 {{-- scripts from cdn and places --}}
@@ -21,8 +22,8 @@
         <option value="5">Email</option>
     </select>
     <input type="text" id="myInputTextField" placeholder="Search">
-    <button type="button" id="addbtn" data-toggle="modal" data-target="#AddmyModal" style="float: right;">Add</button>
-    <button type="button" style="float: right; href="{{ route('logout') }}" onclick="event.preventDefault();
+    <button type="button" class="btn btn-primary" id="addbtn" data-toggle="modal" data-target="#AddmyModal" style="float: right;">Add</button>
+    <button type="button" class="btn btn-dark" style="float: right; href="{{ route('logout') }}" onclick="event.preventDefault();
     document.getElementById('logout-form').submit();">
         {{ __('Logout') }}
     </button>
@@ -122,8 +123,9 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="eSave" value="edit">Save</button>
-                <button type="button" class="btn btn-default" id="eDel" value="delete">Delete</button>
+                <button type="button" class="btn btn-success" id="eSave" value="edit">Save</button>
+                <button type="button" class="btn btn-warning" id="eDel" value="delete">Delete</button>
+                <button type="button" class="btn btn-danger" id="eDel2"  value="CONFIRM">CONFIRM</button>
                 <input type="hidden" id="link_id" name="link_id" value="0">
                 <input type="hidden" id="hiddenpow" name="hiddenpow" value="0">
             </div>

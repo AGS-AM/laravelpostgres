@@ -2,7 +2,7 @@ jQuery(document).ready(function ($) {
     var cuser = $.getJSON("http://127.0.0.1:8000/user_infos/get_cuser",
         function (data, textStatus, jqXHR) {
             console.log(cuser.responseJSON);
-            
+
             var table = jQuery('#users-table').DataTable({
                 // datatables lftipr
                 sDom: 'tipr',
@@ -34,12 +34,11 @@ jQuery(document).ready(function ($) {
                     data: null,
                     render: function (data, type, row) {
                         // adds edit button on the last collumn
-                        if(cuser.responseJSON.power <= data.power)
-                        {   
-                        return '<button type="button" id="editbtn" disabled>Edit</button>';
+                        if (cuser.responseJSON.power <= data.power) {
+                            return '<button type="button" class="btn btn-default" id="editbtn" disabled>Edit</button>';
                         }
-                        else{
-                        return '<button type="button" id="editbtn">Edit</button>';
+                        else {
+                            return '<button type="button" class="btn btn-info" id="editbtn">Edit</button>';
                         }
                     },
                     targets: 'no-sort',
@@ -49,11 +48,11 @@ jQuery(document).ready(function ($) {
                 ],
                 pageLength: 10,
             });
-            $('#searchfrom').on('change', function() {
+            $('#searchfrom').on('change', function () {
                 jQuery('#myInputTextField').val('');
                 table.search('').draw();
                 table.columns('').search('').draw();
-              });
+            });
             $('#myInputTextField').keyup(function () {
                 $searchfrom = jQuery('#searchfrom').val();
                 if ($searchfrom == "all") {
@@ -63,22 +62,20 @@ jQuery(document).ready(function ($) {
                     table.columns($searchfrom).search($(this).val()).draw();
                 }
             });
-            var power = table.row(jQuery(this).parents('tr')).data();
             console.log(cuser.responseJSON.power);
-            if(cuser.responseJSON.power != 2)
-                        {   
-                            jQuery('#addbtn').hide(); 
-                        }
-                        else{
-                            jQuery('#addbtn').show(); 
-                        }
-            
+            if (cuser.responseJSON.power != 2) {
+                jQuery('#addbtn').hide();
+            }
+            else {
+                jQuery('#addbtn').show();
+            }
             jQuery('#addbtn').click(function () {
                 // some hide/show/reset stuff
                 jQuery('#modalTitle').text("Add New User");
                 jQuery('#modalFormData').trigger("reset");
                 jQuery('#eSave').val("add");
                 jQuery('#eDel').hide();
+                jQuery('#eDel2').hide();
                 // jQuery('#eEmailMain').show();
                 jQuery('#ePassMain').show();
                 jQuery('#myModal').modal('show');
@@ -91,32 +88,37 @@ jQuery(document).ready(function ($) {
                 // gets the table info to find the row data
                 var hiddenpow = data.power;
                 var link_id = data.id;
-                if(cuser.responseJSON.power <= hiddenpow)
-                {
+                if (cuser.responseJSON.power <= hiddenpow) {
                     console.log("denied");
                 }
-                else
-                {
-                jQuery('#modalTitle').text("Edit User");
-                jQuery('#eName').val(data.name);
-                jQuery('#eSurName').val(data.surname);
-                jQuery('#eUser').val(data.username);
-                jQuery('#ePhone').val(data.phone);
-                // jQuery('#eEmailMain').hide();
-                jQuery('#eEmail').val(data.email);
-                jQuery('#ePassMain').hide();
-                jQuery('#eSave').val("edit");
-                jQuery('#eDel').show();
-                jQuery('#link_id').val(link_id);
-                jQuery('#hiddenpow').val(hiddenpow);
-                //changes data to show in fields
-                jQuery("#myModal").modal('show');
-                jQuery('.alert-danger').hide();
+                else {
+                    jQuery('#modalTitle').text("Edit User");
+                    jQuery('#eName').val(data.name);
+                    jQuery('#eSurName').val(data.surname);
+                    jQuery('#eUser').val(data.username);
+                    jQuery('#ePhone').val(data.phone);
+                    // jQuery('#eEmailMain').hide();
+                    jQuery('#eEmail').val(data.email);
+                    jQuery('#ePassMain').hide();
+                    jQuery('#eSave').val("edit");
+                    jQuery('#eDel').show();
+                    jQuery('#eDel2').hide();
+                    jQuery('#link_id').val(link_id);
+                    jQuery('#hiddenpow').val(hiddenpow);
+                    //changes data to show in fields
+                    jQuery("#myModal").modal('show');
+                    jQuery('.alert-danger').hide();
                 }
             });
-
-            jQuery('#eDel').click(function () {
+            jQuery('#eDel2').hide();
+            jQuery('#eDel').click(function () {  
+                jQuery('#eDel2').show();
+                jQuery('#eDel').hide();
+            });
+            jQuery('#eDel2').click(function () {
+                
                 // delete from db
+                //jQuery('#eDel').addClass('class="btn btn-danger"');
                 var link_id = jQuery('#link_id').val();
                 $.ajaxSetup({
                     headers: {
@@ -127,11 +129,13 @@ jQuery(document).ready(function ($) {
                     type: "DELETE",
                     url: 'user_infos/' + link_id,
                     success: function (data) {
-                        console.log("delete" + data);
+                        console.log(link_id);
                         $("#link_id" + link_id).remove();
                         table.ajax.reload(null, false);
                         jQuery('#modalFormData').trigger("reset");
                         jQuery('#myModal').modal('hide');
+                        jQuery('#eDel').show();
+                        jQuery('#eDel2').hide();
                     },
                     error: function (data) {
                         console.log('Error:', data);
@@ -142,9 +146,11 @@ jQuery(document).ready(function ($) {
                         });
                     }
                 });
+                
             });
 
             $("#eSave").click(function (e) {
+                
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
@@ -185,6 +191,8 @@ jQuery(document).ready(function ($) {
                         // reloads using ajax
                         jQuery('#modalFormData').trigger("reset");
                         jQuery('#myModal').modal('hide');
+                        jQuery('#eDel').show();
+                        jQuery('#eDel2').hide();
                         //hides the modal after completion
                     },
                     error: function (data) {
@@ -199,7 +207,7 @@ jQuery(document).ready(function ($) {
                 });
 
             });
-            
+
         });
-        
+
 });
