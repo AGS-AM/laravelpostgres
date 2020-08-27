@@ -98,6 +98,6 @@ class UserController extends Controller
             return response()->json(['errors' => [0 =>'Not Enough Power']], 400);
         }
         $delUsers = User::destroy($link_id);
-        return response()->json($link_id, 200);
+        return response()->json($link_id, 204);
     }
 }

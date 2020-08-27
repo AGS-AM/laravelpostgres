@@ -212,9 +212,12 @@ class ExampleTest extends TestCase
             ->assertStatus(202);
         //REQUIRES LOGIN
 
-
-        $this->json('DELETE', '/user_infos/1', ['Accept' => 'application/json'])
-            ->assertStatus(200);
+        for($i=1;$i<11;$i++)
+        {
+        echo "\n Testing Mass Delete ".$i;
+        $this->json('DELETE', '/user_infos/'.$i, ['Accept' => 'application/json'])
+            ->assertStatus(204);
+        }
     }
     public function testPowerDatatables()
     {
@@ -241,4 +244,6 @@ class ExampleTest extends TestCase
             ->assertStatus(400)
             ->assertJson(['errors' => [0 =>'Not Enough Power']]);
     }
+
+    
 }
