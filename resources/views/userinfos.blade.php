@@ -11,24 +11,24 @@
 <script src="js/handler.js"></script>
 {{-- scripts from cdn and places --}}
 <div id="test">
-    <button type="button" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-        {{ __('Logout') }}
-    </button>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
-
-    <button type="button" id="addbtn" data-toggle="modal" data-target="#AddmyModal">Add</button>
     <label for="searchfrom">Search From : </label>
     <select name="searchfrom" id="searchfrom">
         <option value="all">All</option>
         <option value="1">Name</option>
         <option value="2">Surname</option>
-        <option value="3">Phone</option>
-        <option value="4">Email</option>
+        <option value="3">Username</option>
+        <option value="4">Phone</option>
+        <option value="5">Email</option>
     </select>
     <input type="text" id="myInputTextField" placeholder="Search">
+    <button type="button" id="addbtn" data-toggle="modal" data-target="#AddmyModal" style="float: right;">Add</button>
+    <button type="button" style="float: right; href="{{ route('logout') }}" onclick="event.preventDefault();
+    document.getElementById('logout-form').submit();">
+        {{ __('Logout') }}
+    </button>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
     <table id="users-table" class="table">
         <thead>
             {{-- simple table, filled in the js --}}

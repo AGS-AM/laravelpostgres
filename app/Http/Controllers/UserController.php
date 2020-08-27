@@ -22,6 +22,14 @@ class UserController extends Controller
         $user_infos = User::all();
         return view('userinfos', ['user_infos' => $user_infos]);
     }
+    public function get_power()
+    {
+        return Auth::user()->power;
+    }
+    public function get_cuser()
+    {
+        return Auth::user();
+    }
     public function get_data()
     {
         return DataTables::eloquent(User::query())->make(true);
