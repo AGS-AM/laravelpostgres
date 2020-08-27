@@ -34,6 +34,7 @@ jQuery(document).ready(function ($) {
                     data: null,
                     render: function (data, type, row) {
                         // adds edit button on the last collumn
+                        //buttons are disabled for similar level
                         if (cuser.responseJSON.power <= data.power) {
                             return '<button type="button" class="btn btn-default" id="editbtn" disabled>Edit</button>';
                         }
@@ -52,6 +53,7 @@ jQuery(document).ready(function ($) {
                 jQuery('#myInputTextField').val('');
                 table.search('').draw();
                 table.columns('').search('').draw();
+                //resets search once the type changes 
             });
             $('#myInputTextField').keyup(function () {
                 $searchfrom = jQuery('#searchfrom').val();
@@ -63,6 +65,8 @@ jQuery(document).ready(function ($) {
                 }
             });
             console.log(cuser.responseJSON.power);
+            //only power 2 can add, this is only UI, technically can be bypassed by directly asking controller
+            //update - already have a fail safe, but left open for testing 
             if (cuser.responseJSON.power != 2) {
                 jQuery('#addbtn').hide();
             }
@@ -90,6 +94,7 @@ jQuery(document).ready(function ($) {
                 var link_id = data.id;
                 if (cuser.responseJSON.power <= hiddenpow) {
                     console.log("denied");
+                    //incase ppl change thru inspect
                 }
                 else {
                     jQuery('#modalTitle').text("Edit User");

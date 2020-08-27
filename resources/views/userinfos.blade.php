@@ -126,6 +126,7 @@
                 <button type="button" class="btn btn-success" id="eSave" value="edit">Save</button>
                 <button type="button" class="btn btn-warning" id="eDel" value="delete">Delete</button>
                 <button type="button" class="btn btn-danger" id="eDel2"  value="CONFIRM">CONFIRM</button>
+                {{-- this is bad security management btw  --}}
                 <input type="hidden" id="link_id" name="link_id" value="0">
                 <input type="hidden" id="hiddenpow" name="hiddenpow" value="0">
             </div>
