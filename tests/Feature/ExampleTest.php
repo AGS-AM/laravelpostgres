@@ -20,7 +20,7 @@ class ExampleTest extends TestCase
     {
         $response = $this->get('/');
 
-        $response->assertStatus(302);
+        $response->assertStatus(302)->assertRedirect('/login');
     }
     public function testCleanRegister()
     {
@@ -82,7 +82,7 @@ class ExampleTest extends TestCase
         $this->json('GET', 'user_infos/get_data')
             ->assertJson(
                 [
-                    'recordsTotal' => 1001,
+                    'recordsTotal' => 501,
                 ]
             );
         //Looking to see if the seeded 50 and recently added 1 makes 51
