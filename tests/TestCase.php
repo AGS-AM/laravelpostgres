@@ -24,7 +24,7 @@ abstract class TestCase extends BaseTestCase
             'email' => 'testingphase@testingphase.com',
             'email_verified_at' => now(),
             'password' => Hash::make('12345678ABC'),
-            'power' => 2,
+            'power' => 10,
             'remember_token' => '123',
         ]);
         Artisan::call('passport:install');

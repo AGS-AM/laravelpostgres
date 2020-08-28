@@ -23,7 +23,7 @@
     </select>
     <input type="text" id="myInputTextField" placeholder="Search">
     <button type="button" class="btn btn-primary" id="addbtn" data-toggle="modal" data-target="#AddmyModal" style="float: right;">Add</button>
-    <button type="button" class="btn btn-dark" style="float: right; href="{{ route('logout') }}" onclick="event.preventDefault();
+    <button type="button" class="btn btn-dark" style="float: right;" href="{{ route('logout') }}" onclick="event.preventDefault();
     document.getElementById('logout-form').submit();">
         {{ __('Logout') }}
     </button>
@@ -32,7 +32,7 @@
     </form>
     <table id="users-table" class="table">
         <thead>
-            {{-- simple table, filled in the js --}}
+            {{-- simple table, filled in by handler.js --}}
             <tr>
                 <th>ID</th>
                 <th>Name</th>
@@ -45,7 +45,7 @@
             </tr>
         </thead>
         <tfoot>
-            {{-- simple table, filled in the js --}}
+            {{-- simple table, filled in by handler.js --}}
             <tr>
                 <th>ID</th>
                 <th>Name</th>

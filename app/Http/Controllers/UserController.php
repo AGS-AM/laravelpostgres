@@ -96,7 +96,7 @@ class UserController extends Controller
         $user_infos->surname = $request->surname;
         $user_infos->username = $request->username;
         $user_infos->phone = $request->phone;
-        // $user_infos->email = $request->email;
+        $user_infos->email = $request->email;
         $user_infos->save();
         $user_infos->currentuser = Auth::user()->power;
         return response()->json($user_infos, 202);
@@ -105,7 +105,7 @@ class UserController extends Controller
     {
         if(!Auth::check()){return response()->json(['errors' => [0 =>'Authentication Error']], 401);}
         $user_infos = User::find($link_id);
-        if(Auth::user()->power<$user_infos->power)
+        if(Auth::user()->power<=$user_infos->power)
         {
             return response()->json(['errors' => [0 =>'Not Enough Power']], 400);
         }

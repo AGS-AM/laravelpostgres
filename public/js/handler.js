@@ -27,10 +27,12 @@ jQuery(document).ready(function ($) {
                     render: $.fn.DataTable.render.number('-', '.', 0, '+66 8-'),
                 },
                 {
-                    data: 'email'
+                    data: 'email',
                 },
                 {
-                    data: 'power'
+                    data: 'power',
+                    orderable: false,
+                    searchable: false
                 },
                 {
                     data: null,
@@ -44,10 +46,9 @@ jQuery(document).ready(function ($) {
                             return '<button type="button" class="btn btn-info" id="editbtn">Edit</button>';
                         }
                     },
-                    targets: 'no-sort',
                     orderable: false,
                     searchable: false
-                },
+                }
                 ],
                 pageLength: 10,
             });
