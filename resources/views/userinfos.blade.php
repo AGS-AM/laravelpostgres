@@ -23,7 +23,7 @@
     </select>
     <input type="text" id="myInputTextField" placeholder="Search">
     <button type="button" class="btn btn-primary" id="addbtn" data-toggle="modal" data-target="#AddmyModal" style="float: right;">Add</button>
-    <button type="button" class="btn btn-dark" style="float: right;" href="{{ route('logout') }}" onclick="event.preventDefault();
+    <button type="button" class="btn btn-dark" id= "yeet" style="float: right;" href="{{ route('logout') }}" onclick="event.preventDefault();
     document.getElementById('logout-form').submit();">
         {{ __('Logout') }}
     </button>
