@@ -105,7 +105,7 @@ class UserController extends Controller
     {
         if(!Auth::check()){return response()->json(['errors' => [0 =>'Authentication Error']], 401);}
         $user_infos = User::find($link_id);
-        if(Auth::user()->power<2)
+        if(Auth::user()->power<$user_infos->power)
         {
             return response()->json(['errors' => [0 =>'Not Enough Power']], 400);
         }

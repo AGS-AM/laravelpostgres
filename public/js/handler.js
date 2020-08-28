@@ -23,7 +23,8 @@ jQuery(document).ready(function ($) {
                     data: 'username'
                 },
                 {
-                    data: 'phone'
+                    data: 'phone',
+                    render: $.fn.DataTable.render.number('-', '.', 0, '+66 8-'),
                 },
                 {
                     data: 'email'
