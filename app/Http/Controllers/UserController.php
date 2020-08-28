@@ -36,6 +36,8 @@ class UserController extends Controller
     }
     public function personalinput(Request $request)
     {
+        //just incase they actually send a request directly thru handler like in "delete"
+        if(!Auth::check()){return response()->json(['errors' => [0 =>'Authentication Error']], 401);}
         if(Auth::user()->power<=$request->power)
         {
             return response()->json(['errors' => [0 =>'Not Enough Power']], 400);
@@ -71,6 +73,7 @@ class UserController extends Controller
     }
     public function edit(Request $request, $link_id)
     {
+        if(!Auth::check()){return response()->json(['errors' => [0 =>'Authentication Error']], 401);}
         if(Auth::user()->power<=$request->power)
         {
             return response()->json(['errors' => [0 =>'Not Enough Power']], 400);
@@ -100,6 +103,7 @@ class UserController extends Controller
     }
     public function delete($link_id)
     {
+        if(!Auth::check()){return response()->json(['errors' => [0 =>'Authentication Error']], 401);}
         $user_infos = User::find($link_id);
         if(Auth::user()->power<2)
         {
