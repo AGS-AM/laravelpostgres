@@ -24,7 +24,13 @@ jQuery(document).ready(function ($) {
                 },
                 {
                     data: 'phone',
-                    render: $.fn.DataTable.render.number('-', '.', 0, '+66 8-'),
+                    //render: $.fn.DataTable.render.number('-', '.', 0, '+66 8-'),
+                    render: function ( toFormat ) {
+                        var tPhone;
+                        tPhone=toFormat.toString();            
+                        tPhone='(0' + tPhone.substring(0,2) + ') ' + tPhone.substring(2,6) + '-' + tPhone.substring(6,8) + '-' + tPhone.substring(8,10);   
+                        return tPhone;
+                    }
                 },
                 {
                     data: 'email',
@@ -120,13 +126,13 @@ jQuery(document).ready(function ($) {
                 }
             });
             jQuery('#eDel2').hide();
-            jQuery('#eDel').click(function () {  
+            jQuery('#eDel').click(function () {
                 jQuery('#eDel2').show();
                 console.log(lockedlinkid);
                 jQuery('#eDel').hide();
             });
             jQuery('#eDel2').click(function () {
-                
+
                 // delete from db
                 //jQuery('#eDel').addClass('class="btn btn-danger"');
                 var link_id = jQuery('#link_id').val();
@@ -157,11 +163,11 @@ jQuery(document).ready(function ($) {
                         });
                     }
                 });
-                
+
             });
 
             $("#eSave").click(function (e) {
-                
+
                 $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')

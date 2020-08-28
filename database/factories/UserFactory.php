@@ -23,7 +23,7 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->firstName,
         'surname' => $faker->lastName,
         'username' => $faker->unique()->userName,
-        'phone' => $faker->randomNumber($nbDigit = 8, $strict = true),
+        'phone' => $faker->randomNumber($nbDigit = 9, $strict = true),
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => Hash::make('12345678ABC'), // hashed password for generated data to work
