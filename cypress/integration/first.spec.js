@@ -14,26 +14,6 @@ context('Actions', () => {
         // cy.get('#loginbtn').click()
     });
 
-    // it('enters username', () => {
-    //     cy.get('#username')
-    //         .type('jacobson.pablo')
-    //         .should('have.value', 'jacobson.pablo')
-    // })
-    // it('enters password', () => {
-    //     cy.get('#password')
-    //         .type('12345678ABC')
-    //         .should('have.value', '12345678ABC')
-    // })
-    // it('DOES BOTH', () => {
-    //     cy.get('#username')
-    //         .type('jacobson.pablo')
-    //         .should('have.value', 'jacobson.pablo')
-    //     cy.get('#password')
-    //         .type('12345678ABC')
-    //         .should('have.value', '12345678ABC')
-    //     cy.get('#loginbtn').click()
-    // })
-
     it('goes in and leaves and logs in properlly', () => {
         cy.wait(2000)
         cy.get('#yeet').click()
@@ -175,4 +155,46 @@ context('Actions', () => {
 
         cy.get('#yeet').click()
     });
+
+    it('tests a duplicate email', () => {
+
+        cy.get('#username')
+            .type('jacobson.pablo')
+            .should('have.value', 'jacobson.pablo')
+        cy.get('#password')
+            .type('12345678ABC')
+            .should('have.value', '12345678ABC')
+        cy.get('#loginbtn').click()
+
+        cy.get('#searchfrom').select('Name').should('have.value', '1')
+        cy.get('#myInputTextField').type('{selectall}{del}Shea')
+        cy.wait(2000)
+        cy.get('#users-table tr').get('#editbtn').click()
+        cy.wait(2000)
+        cy.get('#eEmail').type('{selectall}{del}treutel.aliyah@example.com')
+        cy.get('#eSave').click()
+        cy.get('#danger').should('contain', 'The email has already been taken.')
+        cy.get('#closemodal').click()
+        cy.get('#yeet').click()
+    })
+
+    it('enters username', () => {
+        cy.get('#username')
+            .type('jacobson.pablo')
+            .should('have.value', 'jacobson.pablo')
+    })
+    it('enters password', () => {
+        cy.get('#password')
+            .type('12345678ABC')
+            .should('have.value', '12345678ABC')
+    })
+    it('DOES BOTH', () => {
+        cy.get('#username')
+            .type('{selectall}{del}jacobson.pablo')
+            .should('have.value', 'jacobson.pablo')
+        cy.get('#password')
+            .type('{selectall}{del}12345678ABC')
+            .should('have.value', '12345678ABC')
+        cy.get('#loginbtn').click()
+    })
 });

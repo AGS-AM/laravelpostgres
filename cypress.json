@@ -3,5 +3,6 @@
     "env": {
       "username": "jacobson.pablo",
       "password": "12345678ABC"
-    }
+    },
+    "pageLoadTimeout": 100000
   }

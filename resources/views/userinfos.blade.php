@@ -85,11 +85,11 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <button type="button" id="closemodal" class="close" data-dismiss="modal">&times;</button>
                 <h4 id="modalTitle" class="modal-title">Edit User</h4>
             </div>
             {{-- error to be places here --}}
-            <div class="alert alert-danger" style="display:none"></div>
+            <div class="alert alert-danger" id="danger" style="display:none"></div>
             <div class="modal-body">
                 <form id="modalFormData" name="modalFormData" class="form-horizontal" novalidate="">
 
